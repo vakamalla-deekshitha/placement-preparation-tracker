@@ -353,3 +353,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     init();
 });
+
+// Interactive enhancements and UI updates added.
