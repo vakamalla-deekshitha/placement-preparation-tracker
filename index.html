@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepTracker - Placement Preparation Tracker</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dark text-light">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-blur sticky-top border-bottom border-secondary">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <i class="fa-solid fa-graduation-cap text-primary fs-3"></i>
+                <span class="fw-bold tracking-wide">PrepTracker</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#dashboard">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#dsa">DSA Tracker</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#aptitude">Aptitude</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#subjects">Core Subjects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#mock">Mock Interviews</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container py-4">
+        
+        <!-- Header -->
+        <header class="text-center my-4">
+            <h1 class="fw-bold text-gradient">Placement Preparation Tracker</h1>
+            <p class="text-muted">Track your DSA problems, aptitude topics, core subjects, and mock interviews in one centralized portal.</p>
+        </header>
+
+        <!-- Dashboard Row -->
+        <section class="row g-4 mb-5" id="dashboard">
+            <!-- Overall Progress Widget -->
+            <div class="col-lg-4">
+                <div class="card card-custom h-100 p-3 text-center d-flex flex-column justify-content-center">
+                    <h5 class="fw-bold text-muted mb-3">Overall Completion</h5>
+                    <div class="position-relative d-inline-flex justify-content-center align-items-center my-3">
+                        <!-- Custom circular progress indicator using SVG -->
+                        <svg class="progress-ring" width="160" height="160">
+                            <circle class="progress-ring-circle-bg" stroke="rgba(255,255,255,0.05)" stroke-width="12" fill="transparent" r="70" cx="80" cy="80"/>
+                            <circle class="progress-ring-circle" id="overall-progress-circle" stroke="#3b82f6" stroke-width="12" fill="transparent" r="70" cx="80" cy="80"/>
+                        </svg>
+                        <div class="position-absolute fs-2 fw-bold text-primary" id="overall-progress-text">0%</div>
+                    </div>
+                    <p class="text-muted small mt-2">Log tasks and check off items to boost your score.</p>
+                </div>
+            </div>
+
+            <!-- Category-wise Progress -->
+            <div class="col-lg-8">
+                <div class="card card-custom h-100 p-4">
+                    <h5 class="fw-bold text-muted mb-4">Category Analysis</h5>
+                    <div class="d-flex flex-column gap-3">
+                        <div>
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-semibold">Data Structures & Algorithms</span>
+                                <span class="text-primary fw-bold" id="dsa-progress-text">0% (0/50)</span>
+                            </div>
+                            <div class="progress bg-dark-light" style="height: 10px;">
+                                <div class="progress-bar bg-primary" id="dsa-progress-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-semibold">Aptitude & Logical Reasoning</span>
+                                <span class="text-success fw-bold" id="apt-progress-text">0% (0/20)</span>
+                            </div>
+                            <div class="progress bg-dark-light" style="height: 10px;">
+                                <div class="progress-bar bg-success" id="apt-progress-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-semibold">Core CS Subjects (OS, DBMS, CN)</span>
+                                <span class="text-warning fw-bold" id="subj-progress-text">0% (0/15)</span>
+                            </div>
+                            <div class="progress bg-dark-light" style="height: 10px;">
+                                <div class="progress-bar bg-warning" id="subj-progress-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-semibold">Mock Interview Readiness</span>
+                                <span class="text-info fw-bold" id="mock-progress-text">0% (0/5)</span>
+                            </div>
+                            <div class="progress bg-dark-light" style="height: 10px;">
+                                <div class="progress-bar bg-info" id="mock-progress-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trackers tabs -->
+        <div class="row g-4">
+            <!-- DSA Section -->
+            <div class="col-12" id="dsa">
+                <div class="card card-custom p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="fw-bold m-0"><i class="fa-solid fa-code text-primary me-2"></i>Data Structures & Algorithms</h4>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">Filter Difficulty</button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item dsa-filter" href="#" data-filter="all">All</a></li>
+                                <li><a class="dropdown-item dsa-filter" href="#" data-filter="Easy">Easy</a></li>
+                                <li><a class="dropdown-item dsa-filter" href="#" data-filter="Medium">Medium</a></li>
+                                <li><a class="dropdown-item dsa-filter" href="#" data-filter="Hard">Hard</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover border-secondary vertical-align-middle align-middle">
+                            <thead>
+                                <tr class="text-muted">
+                                    <th style="width: 50px;">Status</th>
+                                    <th>Problem Name</th>
+                                    <th>Topic</th>
+                                    <th>Difficulty</th>
+                                    <th>Platform</th>
+                                    <th class="text-end">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dsa-list">
+                                <!-- JS will populate standard DSA sheet items -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aptitude Section -->
+            <div class="col-md-6" id="aptitude">
+                <div class="card card-custom p-4 h-100">
+                    <h4 class="fw-bold mb-3"><i class="fa-solid fa-calculator text-success me-2"></i>Aptitude Checklist</h4>
+                    <div class="list-group list-group-flush rounded bg-transparent overflow-auto" id="apt-list" style="max-height: 400px;">
+                        <!-- JS will populate -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Subjects Section -->
+            <div class="col-md-6" id="subjects">
+                <div class="card card-custom p-4 h-100">
+                    <h4 class="fw-bold mb-3"><i class="fa-solid fa-book-open text-warning me-2"></i>Core CS Subjects</h4>
+                    <div class="list-group list-group-flush rounded bg-transparent overflow-auto" id="subj-list" style="max-height: 400px;">
+                        <!-- JS will populate -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mock Interviews Section -->
+            <div class="col-12" id="mock">
+                <div class="card card-custom p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="fw-bold m-0"><i class="fa-solid fa-comments text-info me-2"></i>Mock Interviews Logs</h4>
+                        <button class="btn btn-primary btn-sm btn-glow" data-bs-toggle="modal" data-bs-target="#addMockModal">
+                            <i class="fa-solid fa-plus me-1"></i>Add Mock Log
+                        </button>
+                    </div>
+                    <div class="row g-3" id="mock-logs-container">
+                        <!-- JS will populate logs -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Add Mock Interview Modal -->
+    <div class="modal fade" id="addMockModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title fw-bold">Log Mock Interview</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="add-mock-form">
+                        <div class="mb-3">
+                            <label class="form-label text-muted">Company/Role Name</label>
+                            <input type="text" id="mock-company" class="form-control bg-dark border-secondary text-light" placeholder="e.g. Google - Software Engineer Intern" required>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label class="form-label text-muted">Interview Date</label>
+                                <input type="date" id="mock-date" class="form-control bg-dark border-secondary text-light" required>
+                            </div>
+                            <div class="col">
+                                <label class="form-label text-muted">Rating (1 - 5 Stars)</label>
+                                <input type="number" id="mock-rating" class="form-control bg-dark border-secondary text-light" min="1" max="5" value="4" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-muted">Feedback & Questions Asked</label>
+                            <textarea id="mock-feedback" class="form-control bg-dark border-secondary text-light" rows="3" placeholder="Two-pointer array questions, system design details, good feedback on communication." required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-muted">Status</label>
+                            <select id="mock-status" class="form-select bg-dark border-secondary text-light">
+                                <option value="Passed">Passed</option>
+                                <option value="Needs Improvement">Needs Improvement</option>
+                                <option value="Pending Result">Pending Result</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 fw-bold py-2 mt-2 btn-glow">Save Log</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer border-top border-secondary py-4 text-center text-muted mt-5 bg-blur">
+        <div class="container">
+            <p class="mb-0">PrepTracker &copy; 2026. Made for Placement Preparation & Placement Score Systems.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
